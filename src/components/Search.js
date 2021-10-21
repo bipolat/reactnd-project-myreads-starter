@@ -19,11 +19,12 @@ class Search extends React.Component{
             </div>
             <div className="search-books-results">
               <ol className="books-grid">
-              try{ allBooks.map(b => (
+              {allBooks.map(b => (
                 <li key={b.id}>
                   <Book book={b} changeBookShelf={this.props.changeShelf} />
                 </li>
-              )) } catch() { console.error("bosönce") }
+                
+              ))}  { console.error("bosönce") }
                  
              
              
