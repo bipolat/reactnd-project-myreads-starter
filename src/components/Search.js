@@ -25,10 +25,22 @@ class Search extends React.Component{
       this.setState(() => ({ query: query.trim(), searchedBooks: [] }));
     }
   }
+
+  getbookShelf = (b) => {
+    const { allBooks } = this.props;
+    var selectBook = allBooks.filter((_) => _.id === b.id);
+    if (selectBook.length > 0) {
+      b.shelf = selectBook[0].shelf;
+    } else {
+      b.shelf = "none";
+    }
+
+    return b;
+  };
   
     
     render(){
-        const allBooks=this.props.allBooks;
+        
         
         return(
             <div className="search-books">
@@ -49,7 +61,7 @@ class Search extends React.Component{
               {this.state.searchedBooks &&
               this.state.searchedBooks.map(b => (
                 <li key={b.id}>
-                  <Book book={b} changeBookShelf={this.props.changeShelf} />
+                  <Book book={this.getbookShelf(b)} changeBookShelf={this.props.changeShelf} />
                 </li>
                 
               ))}  
